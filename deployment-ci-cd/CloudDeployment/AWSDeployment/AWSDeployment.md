@@ -2,8 +2,6 @@
 
 ---
 
-# Table of Contents
-
 1. AWS VPC (Virtual Private Cloud)
 2. AWS EC2 (Elastic Compute Cloud)
 3. AWS S3 (Simple Storage Service)
