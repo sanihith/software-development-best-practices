@@ -1,7 +1,5 @@
 # AWS Core Services Documentation
 
-*Based on AWS Full Notes PDF*
-
 ---
 
 # Table of Contents
@@ -55,7 +53,7 @@ VPC
 ├── Route Table
 ├── Internet Gateway
 ├── Security Group
-└── Network ACL
+
 ```
 
 ---
@@ -76,7 +74,7 @@ Examples:
 
 ### Private Subnet
 
-No direct internet access.
+No direct internet access to subnet.
 
 Examples:
 
@@ -135,20 +133,6 @@ Your notes explain that Security Groups allow inbound and outbound traffic manag
 
 ---
 
-## Network ACL (NACL)
-
-NACL works at subnet level.
-
-Characteristics:
-
-* Stateless firewall
-* Allow rules
-* Deny rules
-
-Used to filter subnet traffic.
-
----
-
 ## VPC Resource Connection Flow
 
 ```text
@@ -156,13 +140,19 @@ Internet
    ↓
 Internet Gateway
    ↓
-Route Table
-   ↓
 VPC
    ↓
-Subnet
+Public Route Table
    ↓
-EC2 / RDS
+Public Subnet
+   ↓
+ALB / Nginx EC2 / Bastion Host
+   ↓
+Private Subnet
+   ↓
+Backend EC2
+   ↓
+RDS Database
 ```
 
 ---
@@ -303,8 +293,6 @@ Stores:
 * Logs
 * Database Data
 
-The document explains EBS volumes and snapshots as persistent storage mechanisms for EC2 instances. 
-
 ---
 
 ## EC2 Resource Connection Flow
@@ -344,8 +332,6 @@ Database
 ## Overview
 
 Amazon S3 is AWS object storage service.
-
-The uploaded document lists S3 as one of the core AWS services covered in the notes. 
 
 ---
 
@@ -443,9 +429,6 @@ Uploaded Media Files
 ## Overview
 
 Amazon RDS is AWS managed relational database service.
-
-The PDF includes RDS among the core AWS services discussed in the document. 
-
 ---
 
 ## Purpose of RDS
@@ -535,8 +518,6 @@ Recommended:
 ## Overview
 
 AWS IAM manages authentication and authorization.
-
-The uploaded PDF includes IAM as a core AWS service. 
 
 ---
 
@@ -695,5 +676,3 @@ S3 → Object Storage
 RDS → Database Layer
 IAM → Access Control Layer
 ```
-
-This document is prepared using the concepts covered in your uploaded AWS Full Notes PDF. 
