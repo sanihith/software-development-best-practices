@@ -661,16 +661,4 @@ IAM → EC2 → S3
 
 ---
 
-# Conclusion
 
-These AWS services work together to build secure, scalable, and highly available cloud applications.
-
-Relationship between services:
-
-```text
-VPC → Network Foundation
-EC2 → Compute Layer
-S3 → Object Storage
-RDS → Database Layer
-IAM → Access Control Layer
-```
