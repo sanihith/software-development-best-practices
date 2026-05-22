@@ -243,7 +243,8 @@ Launch an EC2 instance.
 Enable:
 
 ```text
-Auto Assign Public IP = Enabled
+Auto Assi
+gn Public IP = Enabled
 ```
 
 OR attach an **Elastic IP**.
