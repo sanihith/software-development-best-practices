@@ -127,9 +127,71 @@ Characteristics:
 * Stateful firewall
 * Instance level protection
 
-Your notes explain that Security Groups allow inbound and outbound traffic management for EC2 instances. 
 
 ---
+
+# How to connect VPC in AWS
+
+Step 1 — Create VPC
+
+AWS Console → VPC → Create VPC
+
+Example:
+
+CIDR: 10.0.0.0/16
+Step 2 — Create Subnets
+
+Example:
+
+Public Subnet
+
+10.0.1.0/24
+
+Private Subnet
+
+10.0.2.0/24
+Step 3 — Create Internet Gateway
+
+Go to:
+
+VPC → Internet Gateway → Create
+
+Attach it to your VPC.
+
+VPC
+ └── Internet Gateway
+Step 4 — Configure Route Table
+
+Create route.
+
+Destination     Target
+0.0.0.0/0       IGW
+
+Meaning:
+
+All internet traffic → Internet Gateway
+
+Associate this route table with Public Subnet.
+
+Step 5 — Enable Public IP
+
+Launch EC2.
+
+Enable:
+
+Auto Assign Public IP = Enabled
+
+or attach Elastic IP.
+
+Step 6 — Security Group Rules
+
+Allow traffic.
+
+Example:
+
+SSH   22     MyIP
+HTTP  80     0.0.0.0/0
+HTTPS 443    0.0.0.0/0
 
 ## VPC Resource Connection Flow
 
