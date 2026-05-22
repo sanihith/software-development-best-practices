@@ -1931,7 +1931,7 @@ Kubernetes Deployment
         ↓
 Monitoring + Security Validation
         ↓
-Production Release
+Production Releasegit
 ```
 
 # 10. Conclusion
