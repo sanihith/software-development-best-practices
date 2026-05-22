@@ -1196,7 +1196,7 @@ Most companies prefer:
 
 ---
 
-# # 9. Best Practices in Modern Deployment
+## 9. Best Practices in Modern Deployment
 
 Modern companies follow deployment best practices to achieve:
 
@@ -1413,12 +1413,6 @@ Development and production environments match.
 
 ---
 
-### Isolation
-
-Applications run independently.
-
----
-
 ### Fast Deployment
 
 Containers start quickly.
@@ -1567,7 +1561,6 @@ AWS managed container orchestration service.
 Integrates with:
 
 - EC2
-- Fargate
 - IAM
 - CloudWatch
 
