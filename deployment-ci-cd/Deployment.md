@@ -1914,28 +1914,6 @@ If stable:
 
 ---
 
-## Real World Example
-
-Modern production deployment:
-
-```text
-Developer Pushes Code
-        ↓
-CI/CD Pipeline
-        ↓
-Build + Tests
-        ↓
-Docker Image
-        ↓
-Kubernetes Deployment
-        ↓
-Rolling Update
-        ↓
-Zero Downtime Release
-```
-
----
-
 ## Modern Deployment Architecture Example
 
 ```text
