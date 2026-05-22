@@ -79,7 +79,6 @@ Examples:
 * Application Servers
 * Databases
 
-The PDF explains that public subnets can route traffic to and from the internet, while private subnets remain isolated. 
 
 ---
 
@@ -130,7 +129,7 @@ Characteristics:
 
 ---
 
-# How to connect VPC in AWS
+# How to create VPC in AWS
 
 ## Step 1 — Create VPC
 
@@ -341,7 +340,6 @@ Production VPC
 
 Amazon EC2 provides resizable virtual servers inside AWS Cloud.
 
-The PDF defines EC2 as a virtual server service that allows users to rent computing capacity without managing physical hardware. 
 
 ---
 
@@ -441,20 +439,329 @@ Benefits:
 * Survives instance restart
 * Stable endpoint
 
-The PDF explains Elastic IP allocation and association with EC2 resources. 
+
+---
+# AWS EC2 Instance Creation and Connection Guide
+
+This guide explains:
+
+- Creating an EC2 Instance
+- Configuring networking
+- Creating a Key Pair
+- Configuring Security Groups
+- Connecting to the EC2 Instance using SSH
 
 ---
 
-## EBS (Elastic Block Store)
+# Step 1 — Navigate to EC2 Service
 
-EBS provides storage for EC2.
+Open AWS Console.
 
-Stores:
+Go to:
 
-* Operating System
-* Application Files
-* Logs
-* Database Data
+```text
+AWS Console → EC2 → Instances
+```
+
+Click:
+
+```text
+Launch Instance
+```
+
+---
+
+# Step 2 — Configure Instance Details
+
+Provide the instance details.
+
+### Instance Name
+
+Example:
+
+```text
+my-server
+```
+
+---
+
+### Choose Amazon Machine Image (AMI)
+
+Select an Operating System.
+
+Examples:
+
+```text
+Amazon Linux 2023
+Ubuntu Server 24.04
+Red Hat Enterprise Linux
+Windows Server
+```
+
+Recommended:
+
+```text
+Amazon Linux
+```
+
+---
+
+### Choose Instance Type
+
+Select hardware configuration.
+
+Example:
+
+```text
+t2.micro
+```
+
+Explanation:
+
+| Instance Type | Purpose |
+|---------------|----------|
+| t2.micro | Free Tier / Small Workloads |
+| t3.medium | Medium Applications |
+| m5.large | Production Workloads |
+
+---
+
+# Step 3 — Create Key Pair
+
+A Key Pair is used for secure login.
+
+Click:
+
+```text
+Create New Key Pair
+```
+
+Provide:
+
+```text
+Key Pair Name: my-key
+Type: RSA
+Format: .pem
+```
+
+Download the key file.
+
+Example:
+
+```text
+my-key.pem
+```
+
+**Important:**
+
+Store the `.pem` file securely.
+
+Without it, SSH access may be lost.
+
+---
+
+# Step 4 — Configure Network Settings
+
+Choose:
+
+```text
+Select Existing VPC
+```
+
+or
+
+```text
+Create New VPC
+```
+
+Choose Subnet:
+
+```text
+Public Subnet
+```
+
+Enable:
+
+```text
+Auto Assign Public IP = Enabled
+```
+
+Purpose:
+
+Allows the EC2 instance to receive a public IP address.
+
+---
+
+# Step 5 — Configure Security Group
+
+Create a Security Group.
+
+Example Rules:
+
+| Type | Port | Source |
+|------|------|---------|
+| SSH | 22 | MyIP |
+| HTTP | 80 | 0.0.0.0/0 |
+| HTTPS | 443 | 0.0.0.0/0 |
+
+Explanation:
+
+### SSH — Port 22
+
+```text
+SSH 22 MyIP
+```
+
+Allows secure remote login.
+
+---
+
+### HTTP — Port 80
+
+```text
+HTTP 80 0.0.0.0/0
+```
+
+Allows web traffic.
+
+---
+
+### HTTPS — Port 443
+
+```text
+HTTPS 443 0.0.0.0/0
+```
+
+Allows encrypted web traffic.
+
+---
+
+# Step 6 — Launch Instance
+
+Review configuration.
+
+Click:
+
+```text
+Launch Instance
+```
+
+AWS will create the EC2 server.
+
+---
+
+# Step 7 — Verify Instance Status
+
+Navigate to:
+
+```text
+EC2 → Instances
+```
+
+Wait until:
+
+```text
+Instance State = Running
+Status Check = 2/2 Passed
+```
+
+---
+
+# Step 8 — Connect to EC2 Instance
+
+Select the instance.
+
+Click:
+
+```text
+Connect
+```
+
+AWS provides multiple connection methods.
+
+---
+
+## Method 1 — EC2 Instance Connect (Browser SSH)
+
+Choose:
+
+```text
+EC2 Instance Connect
+```
+
+Click:
+
+```text
+Connect
+```
+
+AWS opens a browser terminal.
+
+No local SSH setup required.
+
+---
+
+## Method 2 — SSH using Terminal (Recommended)
+
+### Linux / MacOS / WSL
+
+Go to the folder containing your key.
+
+Example:
+
+```bash
+cd Downloads
+```
+
+Change key permissions:
+
+```bash
+chmod 400 my-key.pem
+```
+
+Connect:
+
+### Amazon Linux
+
+```bash
+ssh -i my-key.pem ec2-user@PUBLIC_IP
+```
+
+### Ubuntu
+
+```bash
+ssh -i my-key.pem ubuntu@PUBLIC_IP
+```
+
+Example:
+
+```bash
+ssh -i my-key.pem ec2-user@54.210.xx.xx
+```
+
+---
+
+## Method 3 — Windows PowerShell
+
+Open PowerShell.
+
+Run:
+
+```powershell
+ssh -i "C:\Users\User\Downloads\my-key.pem" ec2-user@PUBLIC_IP
+```
+
+---
+
+# Step 9 — Verify Connection
+
+Successful connection shows:
+
+```text
+[ec2-user@ip-10-0-1-15 ~]$
+```
+
+You are now logged into the server.
 
 ---
 
