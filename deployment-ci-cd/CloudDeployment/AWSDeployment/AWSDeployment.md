@@ -132,7 +132,7 @@ Characteristics:
 
 # How to connect VPC in AWS
 
-Step 1 — Create VPC
+## Step 1 — Create VPC
 
 AWS Console → VPC → Create VPC
 
@@ -141,7 +141,7 @@ Example:
 CIDR: 10.0.0.0/16
 
 
-Step 2 — Create Subnets
+## Step 2 — Create Subnets
 
 Example:
 
@@ -154,7 +154,7 @@ Private Subnet
 10.0.2.0/24
 
 
-Step 3 — Create Internet Gateway
+## Step 3 — Create Internet Gateway
 
 Go to:
 
@@ -164,9 +164,9 @@ Attach it to your VPC.
 
 VPC
  └── Internet Gateway
- 
 
-Step 4 — Configure Route Table
+
+## Step 4 — Configure Route Table
 
 Create route.
 
@@ -180,7 +180,7 @@ All internet traffic → Internet Gateway
 Associate this route table with Public Subnet.
 
 
-Step 5 — Enable Public IP
+## Step 5 — Enable Public IP
 
 Launch EC2.
 
@@ -191,7 +191,7 @@ Auto Assign Public IP = Enabled
 or attach Elastic IP.
 
 
-Step 6 — Security Group Rules
+## Step 6 — Security Group Rules
 
 Allow traffic.
 
