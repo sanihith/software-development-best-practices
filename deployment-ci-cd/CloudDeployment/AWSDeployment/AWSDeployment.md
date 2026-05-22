@@ -134,72 +134,167 @@ Characteristics:
 
 ## Step 1 — Create VPC
 
+Navigate to:
+
+```text
 AWS Console → VPC → Create VPC
+```
 
-Example:
+Example Configuration:
 
-CIDR: 10.0.0.0/16
+```text
+CIDR Block: 10.0.0.0/16
+```
 
+Explanation:
+
+- `10.0.0.0` → Network Address
+- `/16` → CIDR range allowing 65,536 IP addresses
+
+The VPC acts as your **private network inside AWS**.
+
+---
 
 ## Step 2 — Create Subnets
 
-Example:
+Create subnets inside the VPC.
 
-Public Subnet
+### Public Subnet
 
+```text
 10.0.1.0/24
+```
 
-Private Subnet
+### Private Subnet
 
+```text
 10.0.2.0/24
+```
 
+Explanation:
 
-## Step 3 — Create Internet Gateway
+| Subnet Type | Purpose |
+|-------------|----------|
+| Public Subnet | Internet-accessible resources |
+| Private Subnet | Internal resources without direct internet access |
 
-Go to:
+Typical Usage:
 
+- **Public Subnet** → Bastion Host, Load Balancer, Public EC2
+- **Private Subnet** → Application Servers, Databases (RDS)
+
+---
+
+## Step 3 — Create Internet Gateway (IGW)
+
+Navigate to:
+
+```text
 VPC → Internet Gateway → Create
+```
 
-Attach it to your VPC.
+Attach the Internet Gateway to your VPC.
 
+Architecture:
+
+```text
 VPC
  └── Internet Gateway
+```
 
+Purpose:
+
+The Internet Gateway allows communication between your VPC and the internet.
+
+Without an IGW:
+
+- No inbound internet traffic
+- No outbound internet traffic
+
+---
 
 ## Step 4 — Configure Route Table
 
-Create route.
-
-Destination     Target
-0.0.0.0/0       IGW
-
-Meaning:
-
-All internet traffic → Internet Gateway
-
-Associate this route table with Public Subnet.
-
-
-## Step 5 — Enable Public IP
-
-Launch EC2.
-
-Enable:
-
-Auto Assign Public IP = Enabled
-
-or attach Elastic IP.
-
-
-## Step 6 — Security Group Rules
-
-Allow traffic.
+Create a Route Table entry.
 
 Example:
 
-SSH   22     MyIP
-HTTP  80     0.0.0.0/0
-HTTPS 443    0.0.0.0/0
+| Destination | Target |
+|-------------|---------|
+| 0.0.0.0/0 | IGW |
+
+Meaning:
+
+```text
+All internet traffic → Internet Gateway
+```
+
+Associate this Route Table with the **Public Subnet**.
+
+Purpose:
+
+Route Tables determine where network traffic is sent.
+
+---
+
+## Step 5 — Enable Public IP
+
+Launch an EC2 instance.
+
+Enable:
+
+```text
+Auto Assign Public IP = Enabled
+```
+
+OR attach an **Elastic IP**.
+
+Purpose:
+
+Public IP allows external users to access the EC2 instance.
+
+Without Public IP:
+
+- SSH connection unavailable
+- Web access unavailable
+
+---
+
+## Step 6 — Configure Security Group Rules
+
+Allow required inbound traffic.
+
+Example Rules:
+
+| Type | Port | Source |
+|------|------|---------|
+| SSH | 22 | MyIP |
+| HTTP | 80 | 0.0.0.0/0 |
+| HTTPS | 443 | 0.0.0.0/0 |
+
+Explanation:
+
+### SSH — Port 22
+
+```text
+SSH   22   MyIP
+```
+
+Allows secure server login from your machine.
+
+### HTTP — Port 80
+
+```text
+HTTP 80 0.0.0.0/0
+```
+
+Allows public website traffic.
+
+### HTTPS — Port 443
+
+```text
+HTTPS 443 0.0.0.0/0
+```
 
 ## VPC Resource Connection Flow
 
