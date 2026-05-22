@@ -139,6 +139,8 @@ AWS Console → VPC → Create VPC
 Example:
 
 CIDR: 10.0.0.0/16
+
+
 Step 2 — Create Subnets
 
 Example:
@@ -150,6 +152,8 @@ Public Subnet
 Private Subnet
 
 10.0.2.0/24
+
+
 Step 3 — Create Internet Gateway
 
 Go to:
@@ -160,6 +164,8 @@ Attach it to your VPC.
 
 VPC
  └── Internet Gateway
+ 
+
 Step 4 — Configure Route Table
 
 Create route.
@@ -173,6 +179,7 @@ All internet traffic → Internet Gateway
 
 Associate this route table with Public Subnet.
 
+
 Step 5 — Enable Public IP
 
 Launch EC2.
@@ -182,6 +189,7 @@ Enable:
 Auto Assign Public IP = Enabled
 
 or attach Elastic IP.
+
 
 Step 6 — Security Group Rules
 
