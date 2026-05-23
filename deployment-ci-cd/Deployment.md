@@ -12,24 +12,6 @@ After developers build an application, it must be delivered to a server or infra
 
 ---
 
-## Simple Deployment Flow
-
-```text
-Developer Code
-      ↓
-Build Application
-      ↓
-Testing
-      ↓
-Deployment Pipeline
-      ↓
-Production Server
-      ↓
-End Users
-```
-
----
-
 ## Example
 
 A developer creates a FastAPI application locally.
