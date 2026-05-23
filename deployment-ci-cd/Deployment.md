@@ -426,7 +426,7 @@ Version 2 → STARTED
 
 ---
 
-### Real World Scenario — One Line Explanation
+### Real World Scenario
 
 A company running a Spring Boot application on a single Linux server stops the old application version, removes the existing build, deploys the new build, and starts the new version, causing temporary downtime during the deployment process.
 
