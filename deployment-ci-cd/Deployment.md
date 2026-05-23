@@ -44,30 +44,10 @@ Deployment helps companies:
 
 - Deliver new features
 - Fix production bugs
-- Release updates
-- Scale applications
 - Improve customer experience
-- Maintain system reliability
 
 ---
 
-## Example
-
-A banking company launches a payment update.
-
-Without deployment:
-
-```text
-Code exists but users cannot access it.
-```
-
-With deployment:
-
-```text
-New feature available to millions of customers.
-```
-
----
 
 # 3. Deployment Lifecycle
 
@@ -154,8 +134,6 @@ Examples:
 - EC2
 - Kubernetes
 - Docker Containers
-- Bare Metal Servers
-- Serverless Platforms
 
 ---
 
@@ -168,7 +146,6 @@ Tools:
 - Prometheus
 - Grafana
 - CloudWatch
-- ELK Stack
 
 ---
 
@@ -621,22 +598,6 @@ Used for validation and testing.
 
 ---
 
-## Deployment Flow
-
-```text
-Blue Production
-      ↓
-Deploy to Green
-      ↓
-Testing & Validation
-      ↓
-Traffic Switch
-      ↓
-Green Becomes Production
-```
-
----
-
 ## Architecture Example
 
 Before Deployment:
@@ -947,22 +908,6 @@ Shadow Deployment runs the new version **silently in parallel**.
 Users continue interacting with the old system.
 
 Production traffic is copied to the new environment.
-
----
-
-## Deployment Flow
-
-```text
-Production Traffic
-        ↓
-Old Version
-        ↓
-Traffic Copy
-        ↓
-Shadow Environment
-```
-
-Users only see responses from the old version.
 
 ---
 
